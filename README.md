@@ -26,7 +26,7 @@ In progress...
 
 ## Figma Wireframes
 
-In progress...
+[View my low-fidelity wireframe!](https://www.figma.com/file/6tSHaMxMwT9cy1BukYBahM/Stalk-Market-LO-FI-Wireframes?node-id=0-1&t=ehBmYnca6osJOftE-0)
 
 ## Stretch Goals/Post MVP
 
