@@ -1,6 +1,6 @@
 # The Turnip Stalk Market
 
-Introducing a revolutionary new way to exchange turnip prices in Animal Crossing: New Horizons! Say goodbye to scouring endless Reddit forums and Discord channels, and hello to this sleek and user-friendly turnip price exchange web app. Powered by React and Django, this full-stack platform simplifies the process of buying and selling turnips by connecting players in real-time.
+Introducing a revolutionary new way to exchange turnip prices in Animal Crossing: New Horizons! Say goodbye to scouring endless Reddit forums and Discord channels, and hello to this sleek and user-friendly turnip price exchange web app. Powered by React and Django with Tailwind for styling, this full-stack platform simplifies the process of buying and selling turnips by connecting players in real-time.
 
 Creating an account and signing in is easy - simply register with your email, password, and other information related to your New Horizons island, and you're ready to start. Once logged in, you can create posts advertising your turnip prices to others, inviting them to come to your island and sell. Want to find the best deals? Browse posts from other users and discover the best turnip prices available. Leave comments to coordinate meeting times or just to chat with other players.
 
@@ -10,7 +10,7 @@ With our turnip price exchange web app, buying and selling turnips has never bee
 
 Users will be able to:
 
-- Create an account and sign in
+- Create an account and sign in (have auth)
 - CRUD a post to advertise their turnip prices to other users
 - Leave comments on other people's posts
 - Reply to other users' comments on postings
@@ -22,7 +22,7 @@ In progress...
 
 ## ERD
 
-In progress...
+![ERD](assets/stalk_market_ERD.png)
 
 ## Figma Wireframes
 
