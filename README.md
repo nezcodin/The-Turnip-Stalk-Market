@@ -18,7 +18,7 @@ Users will be able to:
 
 ## Component Hierarchy Diagram
 
-In progress...
+![CHD](assets/stalk_market_CHD.png)
 
 ## ERD
 
@@ -26,7 +26,7 @@ In progress...
 
 ## Figma Wireframes
 
-[View my low-fidelity wireframe!](https://www.figma.com/file/6tSHaMxMwT9cy1BukYBahM/Stalk-Market-LO-FI-Wireframes?node-id=0-1&t=ehBmYnca6osJOftE-0)
+[View my low-fidelity wireframes!](https://www.figma.com/file/6tSHaMxMwT9cy1BukYBahM/Stalk-Market-LO-FI-Wireframes?node-id=0-1&t=ehBmYnca6osJOftE-0)
 
 ## Stretch Goals/Post MVP
 
