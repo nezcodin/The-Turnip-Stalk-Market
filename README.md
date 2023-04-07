@@ -41,10 +41,10 @@ Users will eventually be able to:
 
 ## Miscellaneous Links
 
-- Trello (to be linked...)
-- FigJam Board (to be linked...)
+- [Trello](https://trello.com/b/77x2EGYe/capstone-planning-tracking)
+- [FigJam Board](https://www.figma.com/file/ubcyqzAvAm1WnMZBxx1gX5/Capstone-Planning?node-id=0-1&t=BzkLfM7aH9DtDxZx-0)
 
 ## Get in Contact
 
-Email: ch.fusco104@gmail.com
-LinkedIn: to be linked...
+- Email: ch.fusco104@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/charlottefusco/)
