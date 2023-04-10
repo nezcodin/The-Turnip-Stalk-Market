@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
     path('users/', views.UserList.as_view(), name='users_list'),
@@ -11,4 +12,12 @@ urlpatterns = [
 
     path('comments/', views.CommentList.as_view(), name='comments_list'),
     path('comments/<int:pk>/', views.CommentDetail.as_view(), name='comment_detail'),
+
+
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
+
+    path('home/', views.HomeView.as_view(), name ='home'),
+
+    path('logout/', views.LogoutView.as_view(), name ='logout')
 ]
