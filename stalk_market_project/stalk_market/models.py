@@ -15,7 +15,7 @@ class User(models.Model):
         return self.username
     
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts_author')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     island_name = models.CharField(max_length=10)
     title = models.CharField(max_length=50)
     turnip_price = models.IntegerField()
@@ -28,8 +28,8 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-  author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-  post_id = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
   text_body = models.CharField(max_length=500)
   date = models.DateField(auto_now_add=True)
   time = models.TimeField(auto_now_add=True)
