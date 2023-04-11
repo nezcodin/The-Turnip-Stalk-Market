@@ -21,13 +21,13 @@ export const Home = () => {
           console.log(error);
         });
     } else {
-      window.location.href = '/login';
+      window.location.href = '/home';
     }
   }, []);
 
   return (
     <div>
-      <h3>Hi {message}</h3>
+      <h3>Hi! {message}</h3>
     </div>
   )
 }

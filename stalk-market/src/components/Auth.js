@@ -12,9 +12,9 @@ export const Auth = () => {
 
   return (
     <div>
-      <h3>JWT Authentication</h3>
+      <h3>The Stalk Market</h3>
       <div>
-        {isAuthenticated ? <a href='/'>Home</a> : null}
+        {isAuthenticated ? <a href='/home'>Home</a> : null}
       </div>
       <div>
         {isAuthenticated ? <a href='/logout'>Logout</a> : <a href='/login'>Login</a>}
