@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <div>
+    <div class='bg-beige h-screen w-screen'>
       <NavBar />
       <Auth />
       <Routes>
