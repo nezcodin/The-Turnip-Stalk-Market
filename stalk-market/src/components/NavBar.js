@@ -50,10 +50,10 @@ export const NavBar = () => {
     <div className="flex justify-center p-4 md:p-10 mb-12 font-motivasansmedium">
       <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2">
         <div className="flex flex-row justify-between bg-mintgreen rounded-2xl p-2 md:p-6 items-center">
-          <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400'>
-            <img src={ac_logo} alt="Turnip Logo" className='h-16 w-96 md:h-12 md:w-auto' />
+          <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400 '>
+            <img src={ac_logo} alt="Turnip Logo" className='h-16 w-96 md:h-12 md:w-auto xs:h-8 xs:w-auto xxs:w-auto xxs:h-6' />
           </div>
-          <div className='flex justify-end space-x-4 md:space-x-10 text-2xl md:text-4xl'>
+          <div className='flex justify-end space-x-4 md:space-x-10 text-2xl md:text-4xl xxs:text-sm xxs:p-2'>
 
             <div className='relative'>
               <div className='cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-2 md:p-4 duration-400'>
