@@ -11,14 +11,14 @@ import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <div class='bg-beige h-screen w-screen'>
+    <div class='bg-beige h-screen w-screen font-finkheavy'>
       <NavBar />
       <Auth />
       <Routes>
         <Route path='/home' element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/logout' element={<Logout />} />
+        {/* <Route path='/register' element={<Register />} /> */}
+        {/* <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} /> */}
       </Routes>
       <Footer />
     </div>

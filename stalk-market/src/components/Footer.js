@@ -1,7 +1,16 @@
 export const Footer = () => {
   return (
-    <div className="fixed bottom-0 bg-mintgreen w-screen h-48 text-white">
-      <p className="flex text-center">The Stalk Market is powered using ReactJS and Django.</p>
+    <div className="fixed w-screen bottom-0 p-2 mt-12 text-lg">
+      <div className="bg-mintgreen h-48 text-white flex justify-center items-center rounded-2xl flex-col">
+        <p className="text-center">The Stalk Market is a full-stack app that is powered by ReactJS and Django.</p>
+        <div className="flex flex-row space-x-1">
+          <p className="text-center">The Turnip Stalk Market</p>
+          <p className="text-lg font-motivasansregular text-center">{'\u00A9'}</p>
+          <p className="text-center">2023</p>
+        </div>
+
+      </div>
     </div>
   )
 }
+

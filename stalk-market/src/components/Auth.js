@@ -12,7 +12,6 @@ export const Auth = () => {
 
   return (
     <div>
-      <h3>The Stalk Market</h3>
       <div>
         {isAuthenticated ? <a href='/home'>Home</a> : null}
       </div>

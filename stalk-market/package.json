@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
