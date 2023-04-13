@@ -11,8 +11,14 @@ export const Login = (props) => {
 
   const navigate = useNavigate()
 
+
+
+
   const submit = async (e) => {
     e.preventDefault()
+
+    axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    axios.defaults.xsrfCookieName = "csrftoken";
 
     try {
       const response = await axios.post('http://localhost:8000/api/login/', {
@@ -25,16 +31,21 @@ export const Login = (props) => {
       );
 
       const token = response.data.jwt
+      console.log(token)
       const decodedToken = jwt_decode(token)
+      console.log(decodedToken)
       const username = decodedToken.username
+      console.log(username)
 
       props.setUsername(username)
 
       navigate('/')
 
+      console.log(response.data)
       return response.data;
     } catch (error) {
       console.error(error);
+      console.log(error.response.data)
     }
 
   }

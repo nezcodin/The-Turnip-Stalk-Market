@@ -134,3 +134,17 @@ AUTH_USER_MODEL = 'stalk_market.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:3000/login'
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+    ]
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_DOMAIN = 'localhost'
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
