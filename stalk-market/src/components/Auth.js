@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-export const Auth = () => {
+// export const Auth = () => {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+//   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  useEffect(() => {
-    if (localStorage.getItem('access_token') !== null) {
-      setIsAuthenticated(true)
-    }
-  }, [isAuthenticated])
+//   useEffect(() => {
+//     if (localStorage.getItem('access_token') !== null) {
+//       setIsAuthenticated(true)
+//     }
+//   }, [isAuthenticated])
 
-  return (
-    <div>
-      <div>
-        {isAuthenticated ? <a href='/home'>Home</a> : null}
-      </div>
-      <div>
-        {isAuthenticated ? <a href='/logout'>Logout</a> : <a href='/login'>Login</a>}
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       <div>
+//         {isAuthenticated ? <a href='/home'>Home</a> : null}
+//       </div>
+//       <div>
+//         {isAuthenticated ? <a href='/logout'>Logout</a> : <a href='/login'>Login</a>}
+//       </div>
+//     </div>
+//   )
+// }

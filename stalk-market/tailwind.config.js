@@ -34,7 +34,7 @@ module.exports = {
         'lg': '1024px',
         'xl': '1280px',
         '2xl': '1536px',
-        'xs': '360px', // added new screen size
+        'xs': '360px', // added new screen sizes
         'xxs': '280px'
       },
     },

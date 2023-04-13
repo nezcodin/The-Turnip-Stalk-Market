@@ -13,7 +13,7 @@ function App() {
   return (
     <div class='bg-beige h-screen w-screen font-finkheavy'>
       <NavBar />
-      <Auth />
+      {/* <Auth /> */}
       <Routes>
         <Route path='/home' element={<Home />} />
         {/* <Route path='/register' element={<Register />} /> */}

@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import include
 from django.urls import path
-from django.contrib import admin
+from django.contrib import admin 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('stalk_market.urls')),
-    path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/', include('stalk_market.urls'))
 ]
