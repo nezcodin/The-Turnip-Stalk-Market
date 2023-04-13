@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <div class='bg-beige h-screen w-screen font-finkheavy'>
+    <div className="bg-beige font-finkheavy">
       <NavBar
         username={username}
         setUsername={setUsername}

@@ -40,20 +40,24 @@ export const Login = (props) => {
   }
 
   return (
-    <div>
-      <form onSubmit={submit}>
-        <h1>Sign In</h1>
+    <div class="flex justify-center items-center p-10">
+      <div class="flex bg-skyblue w-96 rounded-xl text-xl justify-center items-center">
+        <form onSubmit={submit} class='flex flex-col justify-center items-center font-motivasansregular'>
+          <h1 class='m-6 text-white font-finkheavy text-4xl'>Sign In</h1>
 
-        <input type="email" placeholder="Email" required
-          onChange={e => setEmail(e.target.value)}
-        />
+          <input type="email" placeholder="Email" required
+            onChange={e => setEmail(e.target.value)}
+            class='m-4 w-60 rounded pl-3'
+          />
 
-        <input type="password" placeholder="Password" required
-          onChange={e => setPassword(e.target.value)}
-        />
+          <input type="password" placeholder="Password" required
+            onChange={e => setPassword(e.target.value)}
+            class='m-4 w-60 rounded pl-3'
+          />
 
-        <button type="submit">Sign In</button>
-      </form>
+          <button type="submit" class='m-6 bg-vividorange text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-orangehover'>Submit</button>
+        </form>
+      </div>
     </div>
   )
 }

@@ -26,7 +26,7 @@ export const NavBar = (props) => {
 
   if (props.username === '') {
     menu = (
-      <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium">
+      <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium bg-beige">
         <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2">
           <div className="flex flex-row justify-between bg-mintgreen rounded-2xl p-2 md:p-6 items-center">
             <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400 '>
@@ -46,7 +46,7 @@ export const NavBar = (props) => {
     );
   } else {
     menu = (
-      <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium">
+      <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium bg-beige">
         <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2">
           <div className="flex flex-row justify-between bg-mintgreen rounded-2xl p-2 md:p-6 items-center">
             <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400 '>

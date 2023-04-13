@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         vividorange: '#FFB347',
+        orangehover: '#FFC169',
         hotpink: '#FF69B4',
         mintgreen: '#A9D18E',
         greenhover: '#98BF7E',
