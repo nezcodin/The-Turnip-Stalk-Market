@@ -11,6 +11,9 @@ from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import View
+from django.http import HttpResponse, Http404
+from django.conf import settings
+import os
 
 # Create your views here.
 
@@ -113,3 +116,13 @@ class PostPicsView(View):
         uploaded_file_url = fs.url(filename)
         return JsonResponse({'image_url': uploaded_file_url})
     
+class GetImageView(View):
+    def get(self, request, *args, **kwargs):
+        image_name = kwargs.get('image_name')
+        image_path = os.path.join(settings.MEDIA_ROOT, image_name)
+        if os.path.exists(image_path):
+            with open(image_path, 'rb') as f:
+                image_data = f.read()
+            return HttpResponse(image_data, content_type='image/png')
+        else:
+            raise Http404("Image not found")

@@ -12,13 +12,14 @@ export const Postings = () => {
       // this will let me get the user since it is returned as a link
       const posts = await Promise.all(response.data.map(async post => {
         const userResponse = await axios.get(post.user)
-        const pictureResponse = await axios.get(post.picture)
+        const pictureResponse = await axios.get(post.post_picture)
         return { ...post, user: userResponse.data, picture: pictureResponse.data }
       }))
       console.log(response.data);
       setPostings(posts)
     } catch (error) {
       console.log(error);
+      console.log(error.response)
     }
   }
 
@@ -35,7 +36,7 @@ export const Postings = () => {
           <p>{post.user.username}</p>
           <p>{post.island_name}</p>
           <p>{post.turnip_picture}</p>
-          <p>{post.post_picture}</p>
+          <img src={post.post_picture} alt="user post" />
         </div>
       ))}
     </div>
