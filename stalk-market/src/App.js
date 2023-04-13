@@ -6,6 +6,7 @@ import { Home } from './components/Home'
 import { Register } from './components/Register';
 import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
+import { Postings } from './components/Postings';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -39,6 +40,7 @@ function App() {
         <Route path='/' element={<Home username={username} />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login setUsername={setUsername} />} />
+        <Route path='/postings' element={<Postings />} />
       </Routes>
       <Footer />
     </div>
