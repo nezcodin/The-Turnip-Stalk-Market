@@ -27,7 +27,7 @@ export const NavBar = (props) => {
   if (props.username === '') {
     menu = (
       <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium bg-beige">
-        <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2">
+        <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2 bg-beige">
           <div className="flex flex-row justify-between bg-mintgreen rounded-2xl p-2 md:p-6 items-center">
             <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400 '>
               <Link to='/'><img src={ac_logo} alt="Turnip Logo" className='h-16 w-96 md:h-12 md:w-auto xs:h-8 xs:w-auto xxs:w-auto xxs:h-6' /></Link>
@@ -47,7 +47,7 @@ export const NavBar = (props) => {
   } else {
     menu = (
       <div className="flex justify-center p-4 md:p-10 mb-16 font-motivasansmedium bg-beige">
-        <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2">
+        <div className="fixed top-0 w-screen h-12 text-white rounded-2xl p-2 bg-beige">
           <div className="flex flex-row justify-between bg-mintgreen rounded-2xl p-2 md:p-6 items-center">
             <div className='flex justify-start cursor-pointer hover:bg-greenhover hover:rounded-3xl transition-all ease-linear p-1 md:p-4 duration-400 '>
               <Link to='/'><img src={ac_logo} alt="Turnip Logo" className='h-16 w-96 md:h-12 md:w-auto xs:h-8 xs:w-auto xxs:w-auto xxs:h-6' /></Link>
