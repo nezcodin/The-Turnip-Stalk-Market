@@ -6,12 +6,17 @@ export const Postings = () => {
   const [postings, setPostings] = useState([])
 
   const viewPostings = async (e) => {
-    e.preventDefault();
 
     try {
       const response = await axios.get('http://localhost:8000/api/posts/');
-      console.log(response);
-      setPostings(response)
+      // this will let me get the user since it is returned as a link
+      const posts = await Promise.all(response.data.map(async post => {
+        const userResponse = await axios.get(post.user)
+        const pictureResponse = await axios.get(post.picture)
+        return { ...post, user: userResponse.data, picture: pictureResponse.data }
+      }))
+      console.log(response.data);
+      setPostings(posts)
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +31,11 @@ export const Postings = () => {
     <div>
       {postings.map(post => (
         <div key={post.id}>
-          <p>{post.user}</p>
+          <p>{post.date}</p>
+          <p>{post.user.username}</p>
+          <p>{post.island_name}</p>
+          <p>{post.turnip_picture}</p>
+          <p>{post.post_picture}</p>
         </div>
       ))}
     </div>
