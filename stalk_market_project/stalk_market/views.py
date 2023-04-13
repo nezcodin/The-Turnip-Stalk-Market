@@ -7,6 +7,10 @@ from rest_framework.response import Response
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 import jwt, datetime
+from django.core.files.storage import FileSystemStorage
+from django.http import JsonResponse
+from django.views import View
+from django.views.generic import View
 
 # Create your views here.
 
@@ -100,3 +104,12 @@ class LogoutView(APIView):
         }
 
         return response
+    
+class PostPicsView(View):
+    def post(self, request, *args, **kwargs):
+        file = request.FILES['image']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        uploaded_file_url = fs.url(filename)
+        return JsonResponse({'image_url': uploaded_file_url})
+    
