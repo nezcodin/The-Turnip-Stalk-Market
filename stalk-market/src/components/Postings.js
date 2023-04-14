@@ -48,9 +48,11 @@ export const Postings = () => {
 
   return (
     <div className='font-motivasansmedium text-white'>
-      <div className="p-6">
-        <Icon icon="el:plus-sign" className="text-vividorange text-4xl"></Icon>
-      </div>
+      <Link to='create'>
+        <div className="p-6">
+          <Icon icon="el:plus-sign" className="text-vividorange text-4xl"></Icon>
+        </div>
+      </Link>
       <div className="flex flex-row text-lg px-6 justify-between">
         <p className="font-motivasansextrabold text-3xl text-sienna">All Postings</p>
         <div>
@@ -69,7 +71,6 @@ export const Postings = () => {
       {postings.map(post => (
         <div
           key={post.id}
-          onClick={() => { <Link to='/'>View</Link> }}
           className="bg-skyblue p-10 m-6 rounded-3xl cursor-pointer"
         >
           <p>{post.date}</p>
