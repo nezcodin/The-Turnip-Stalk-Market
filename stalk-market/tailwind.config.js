@@ -13,6 +13,7 @@ module.exports = {
         greenhover: '#98BF7E',
         lavender: '#C1A7E2',
         sienna: '#8F3F2E',
+        siennahover: '#A84E3B',
         palepink: '#FADADD',
         lightyellow: '#FFEC8B',
         skyblue: '#87CEFA',
