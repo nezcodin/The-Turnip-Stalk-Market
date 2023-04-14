@@ -61,10 +61,5 @@ export const Register = () => {
         </form>
       </div>
     </div>
-    // <div className="h-96 bg-vividorange w-48 p-10">
-    //   <div className="bg-lightyellow h-96 w-96 m-10">
-
-    //   </div>
-    // </div>
   )
 }

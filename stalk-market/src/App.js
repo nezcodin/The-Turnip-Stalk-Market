@@ -14,6 +14,7 @@ import axios from 'axios';
 function App() {
 
   const [username, setUsername] = useState('')
+  const [island_name, setIslandName] = useState('')
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,6 +25,7 @@ function App() {
         });
 
         setUsername(response.data.username)
+        setIslandName(response.data.island_name)
       } catch (error) {
         console.error(error);
       }
@@ -42,7 +44,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login setUsername={setUsername} />} />
         <Route path='/postings' element={<Postings />} />
-        <Route path='/postings/create' element={<CreatePosting />} />
+        <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} />} />
       </Routes>
       <Footer />
     </div>
