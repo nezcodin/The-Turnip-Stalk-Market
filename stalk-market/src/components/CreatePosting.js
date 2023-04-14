@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom"
 
 export const CreatePosting = (props) => {
 
-  const [user, setUser] = useState('')
-  const [island_name, setIslandName] = useState('')
   const [title, setTitle] = useState('')
-  const [turnip_price, setTurnipPrice] = useState('')
+  const [turnip_price, setTurnipPrice] = useState(0)
   const [post_picture, setPostPicture] = useState('')
   const [description, setDescription] = useState('')
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
+
+  const handlePostPictureChange = (e) => {
+    const file = e.target.files[0];
+    setPostPicture(file);
+  };
 
   const navigate = useNavigate()
 
@@ -20,19 +21,16 @@ export const CreatePosting = (props) => {
 
     try {
       const response = await axios.post('http://localhost:8000/api/posts/', {
-        user,
-        island_name,
+        user: props.username,
+        island_name: props.island_name,
         title,
         turnip_price,
         post_picture,
-        description,
-        date,
-        time
+        description
       }, {
         headers: { 'Content-Type': 'application/json' }
       })
 
-      setUser(props.username)
       navigate('/postings')
     } catch (error) {
       throw error
@@ -55,13 +53,13 @@ export const CreatePosting = (props) => {
             onChange={e => setTitle(e.target.value)}
           />
 
-          <input placeholder="Turnip Price" required
+          <input placeholder="Turnip Price" required type="number" min='0'
             onChange={e => setTurnipPrice(e.target.value)}
           />
 
           <p>Please provide a picture to confirm the price.</p>
           <input type="file" required accept="image/*"
-            onChange={e => setPostPicture(e.target.value)}
+            onChange={handlePostPictureChange}
           />
 
           <input placeholder="Description" required
