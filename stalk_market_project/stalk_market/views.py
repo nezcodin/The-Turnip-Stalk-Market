@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import User, Post, Comment
 from .serializers import UserSerializer, PostSerializer, CommentSerializer
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.response import Response
@@ -11,9 +11,20 @@ from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import View
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpRequest
 from django.conf import settings
 import os
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from .forms import PostForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from rest_framework.generics import CreateAPIView
+
+
 
 # Create your views here.
 
@@ -126,3 +137,27 @@ class GetImageView(View):
             return HttpResponse(image_data, content_type='image/png')
         else:
             raise Http404("Image not found")
+
+# class PostCreateView(CreateView):
+#     model = Post
+#     form_class = PostForm
+#     template_name = 'post_form.html'
+#     success_url = reverse_lazy('posts')
+
+#     def form_valid(self, form):
+#         print(self.request.user)
+#         form.instance.user = self.request.user
+#         form.instance.island_name = self.request.user.island_name 
+#         return super().form_valid(form)
+
+#     def form_invalid(self, form):
+#         messages.error(self.request, 'Error: Please check your input.')
+#         return super().form_invalid(form)
+
+class PostCreateAPIView(CreateAPIView):
+    serializer_class = PostSerializer
+
+    def perform_create(self, serializer):
+        # Set the user ID on the Post object
+        serializer.validated_data['user_id'] = self.request.data['user_id']
+        serializer.save()

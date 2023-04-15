@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Group, Permission
+from django.contrib.auth import get_user_model
 
 
 class CustomUserManager(BaseUserManager):
@@ -43,12 +44,28 @@ class User(AbstractUser):
     user_permissions = models.ManyToManyField(Permission, blank=True, related_name='custom_user_user_permissions')
 
 
+# class Post(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+#     island_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='island_name_posts')
+#     title = models.CharField(max_length=50)
+#     turnip_price = models.IntegerField()
+#     post_picture = models.ImageField(null=True)
+#     description = models.TextField(null=True, blank=True)
+#     date = models.DateField(auto_now_add=True)
+#     time = models.TimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return self.title
+
+
+
+
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    island_name = models.CharField(max_length=10)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='posts', null=True)
+    island_name = models.CharField(max_length=10, default='')
     title = models.CharField(max_length=50)
     turnip_price = models.IntegerField()
-    post_picture = models.FileField(upload_to='post_pics/')
+    post_picture = models.ImageField(null=True)
     description = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)

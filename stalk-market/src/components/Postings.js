@@ -74,8 +74,8 @@ export const Postings = () => {
           className="bg-skyblue p-10 m-6 rounded-3xl cursor-pointer text-lg"
         >
           <p>{post.date}</p>
-          <p>{post.user.username}</p>
           <p>{post.island_name}</p>
+          <p>{post.title}</p>
           <p className="font-motivasansextrabold">Turnip Price: {post.turnip_price}</p>
           <img
             src={post.post_picture}

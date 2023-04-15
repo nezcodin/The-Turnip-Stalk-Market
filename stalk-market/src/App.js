@@ -15,6 +15,8 @@ function App() {
 
   const [username, setUsername] = useState('')
   const [island_name, setIslandName] = useState('')
+  const [user_id, setUserId] = useState()
+  const [user, setUser] = useState()
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,6 +28,8 @@ function App() {
 
         setUsername(response.data.username)
         setIslandName(response.data.island_name)
+        setUserId(response.data.id)
+        setUser(response.data)
       } catch (error) {
         console.error(error);
       }
@@ -44,7 +48,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login setUsername={setUsername} />} />
         <Route path='/postings' element={<Postings />} />
-        <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} />} />
+        <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} user={user} />} />
       </Routes>
       <Footer />
     </div>

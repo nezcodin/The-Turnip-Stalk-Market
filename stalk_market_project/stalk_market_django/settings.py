@@ -150,6 +150,6 @@ CSRF_COOKIE_NAME = 'csrftoken'
 CSRF_COOKIE_DOMAIN = 'localhost'
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'post_pics')
-MEDIA_URL = '/post_pics/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 

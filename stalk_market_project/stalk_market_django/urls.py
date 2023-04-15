@@ -24,6 +24,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('stalk_market.urls')),
-    path('post_pics/', PostPicsView.as_view()),
-    path('post_pics/post_pics/<str:image_name>/', GetImageView.as_view(), name='get_image'),
+    path('media/', PostPicsView.as_view()),
+    path('media/<str:image_name>/', GetImageView.as_view(), name='get_image'),
 ]
