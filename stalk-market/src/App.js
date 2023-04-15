@@ -8,6 +8,7 @@ import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Postings } from './components/Postings';
 import { CreatePosting } from './components/CreatePosting';
+import { Profile } from './components/Profile';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -49,6 +50,7 @@ function App() {
         <Route path='/login' element={<Login setUsername={setUsername} />} />
         <Route path='/postings' element={<Postings />} />
         <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} user={user} />} />
+        <Route path='/profile' element={<Profile />} />
       </Routes>
       <Footer />
     </div>
