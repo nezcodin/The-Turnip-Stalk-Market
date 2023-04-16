@@ -32,13 +32,15 @@ class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    serializer_class = PostSerializer 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
@@ -154,10 +156,11 @@ class GetImageView(View):
 #         messages.error(self.request, 'Error: Please check your input.')
 #         return super().form_invalid(form)
 
-class PostCreateAPIView(CreateAPIView):
-    serializer_class = PostSerializer
+# class PostCreateAPIView(CreateAPIView):
+#     serializer_class = PostSerializer
 
-    def perform_create(self, serializer):
-        # Set the user ID on the Post object
-        serializer.validated_data['user_id'] = self.request.data['user_id']
-        serializer.save()
+#     def perform_create(self, serializer):
+#         # Set the user ID on the Post object
+#         serializer.validated_data['user_id'] = self.request.data['user_id']
+#         serializer.save()
+

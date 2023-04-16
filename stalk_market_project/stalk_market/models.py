@@ -43,36 +43,20 @@ class User(AbstractUser):
     groups = models.ManyToManyField(Group, blank=True, related_name='custom_user_groups')
     user_permissions = models.ManyToManyField(Permission, blank=True, related_name='custom_user_user_permissions')
 
-
-# class Post(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-#     island_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='island_name_posts')
-#     title = models.CharField(max_length=50)
-#     turnip_price = models.IntegerField()
-#     post_picture = models.ImageField(null=True)
-#     description = models.TextField(null=True, blank=True)
-#     date = models.DateField(auto_now_add=True)
-#     time = models.TimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.title
-
-
-
-
 class Post(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='posts', null=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='posts')
     island_name = models.CharField(max_length=10, default='')
     title = models.CharField(max_length=50)
-    turnip_price = models.IntegerField()
-    post_picture = models.ImageField(null=True)
+    turnip_price = models.IntegerField(default=0)
+    post_picture = models.ImageField()
     description = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
-
+    
+user = get_user_model().objects.get(pk=1)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')

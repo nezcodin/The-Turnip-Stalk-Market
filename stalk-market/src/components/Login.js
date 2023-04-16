@@ -31,17 +31,17 @@ export const Login = (props) => {
       );
 
       const token = response.data.jwt
-      console.log(token)
       const decodedToken = jwt_decode(token)
       console.log(decodedToken)
       const username = decodedToken.username
-      console.log(username)
+      const user_id = decodedToken.id
 
       props.setUsername(username)
 
+      props.setUserId(user_id)
+
       navigate('/')
 
-      console.log(response.data)
       return response.data;
     } catch (error) {
       console.error(error);

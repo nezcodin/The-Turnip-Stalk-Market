@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import User, Post, Comment
+from django.contrib.auth import get_user
+from django.contrib.auth import get_user_model
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     posts = serializers.HyperlinkedRelatedField(
@@ -15,6 +17,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     # class Meta:
     #     model = User
     #     fields = ('id', 'username', 'password', 'email', 'friend_code', 'island_name', 'profile_picture', 'bio', 'posts', 'comments')
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'password', 'friend_code', "island_name", "profile_picture", "bio", "posts", "comments"]
@@ -22,6 +25,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
+
+    def __init__(self, *args, **kwargs):
+        context = kwargs.pop('context', {})
+        self.request = context.get('request')
+        super().__init__(*args, **kwargs)
 
     # this will "hush" the password and create the new user
     def create(self, validated_data):
@@ -38,9 +46,9 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
-    user = serializers.HyperlinkedRelatedField(
-        view_name='user_detail',
-        read_only=True
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=get_user_model().objects.all(),
+        default=serializers.CurrentUserDefault()
     )
     class Meta:
         model = Post
@@ -57,6 +65,11 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    def __init__(self, *args, **kwargs):
+        context = kwargs.pop('context', {})
+        self.request = context.get('request')
+        super().__init__(*args, **kwargs)
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(
