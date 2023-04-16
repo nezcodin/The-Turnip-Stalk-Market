@@ -11,10 +11,13 @@ export const CreatePosting = (props) => {
   const [post_picture, setPostPicture] = useState('')
   const [description, setDescription] = useState('')
 
+  const [fileName, setFileName] = useState('')
+
   const handlePostPictureChange = (e) => {
-    const file = e.target.files[0];
-    setPostPicture(file);
-  };
+    const file = e.target.files[0]
+    setPostPicture(file)
+    setFileName(file.name)
+  }
 
   const navigate = useNavigate()
 
@@ -43,111 +46,50 @@ export const CreatePosting = (props) => {
 
   return (
     <div>
-      <div>
+      <div className="p-6 text-lg font-motivasansmedium text-sienna flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center p-6">
+          <p className="text-4xl font-finkheavy p-4">Create a Posting</p>
+          <p className="p-2">Author: {props.username}</p>
+          <p className="p-2">Island Name: {props.island_name}</p>
+        </div>
         <form
           onSubmit={submit}
-          className="flex flex-col p-6"
+          className="flex flex-col items-left"
         >
-          <p>Create a Posting</p>
-
-          <p>Author: {props.username}</p>
-          <p>Island Name: {props.island_name}</p>
-
           <input placeholder="Title" required
             onChange={e => setTitle(e.target.value)}
+            className="text-left m-4 rounded-lg p-1 pl-5"
           />
 
           <input placeholder="Turnip Price" required type="number" min='0'
             onChange={e => setTurnipPrice(e.target.value)}
+            className="text-left m-4 rounded-lg p-1 w-36 pl-5"
           />
 
-          <p>Please provide a picture to confirm the price.</p>
-          <input type="file" required accept="image/*"
-            onChange={handlePostPictureChange}
-          />
+          <p className="text-center">Please provide a picture to confirm the price.</p>
+          {fileName ?
+            <p className="text-center">File submitted: {fileName}</p> :
+            null
+          }
+          <div className="flex items-center justify-center">
+            <label className="bg-vividorange hover:orangehover text-white font-finkheavy p-2 rounded-lg text-xl m-6 w-40 text-center hover:bg-orangehover cursor-pointer">
+              <span>Choose file</span>
+              <input type="file" className="hidden" onChange={handlePostPictureChange} />
+            </label>
+          </div>
 
-          <input placeholder="Description" required
+
+          <textarea placeholder="Description" required
             onChange={e => setDescription(e.target.value)}
+            className="text-left m-4 rounded-lg p-1 pl-5 w-96 h-36"
           />
 
-          <button type='submit'>Create Posting</button>
+          <div className="flex items-center justify-center">
+            <button type='submit' className="m-6 bg-vividorange text-white p-3 rounded-lg text-xl w-40 hover:bg-orangehover font-finkheavy">Create Posting</button>
+          </div>
+
         </form>
       </div>
     </div>
   )
 }
-
-// import axios from "axios"
-// import { useState } from "react"
-// import { useNavigate } from "react-router-dom"
-
-// export const CreatePosting = (props) => {
-
-
-//   const [title, setTitle] = useState('')
-//   const [turnip_price, setTurnipPrice] = useState('')
-//   const [post_picture, setPostPicture] = useState(null) // initialize to null
-//   const [description, setDescription] = useState('')
-
-//   const navigate = useNavigate()
-
-//   const submit = async (e) => {
-//     e.preventDefault()
-
-//     try {
-//       const formData = new FormData()
-//       formData.append('island_name', props.island_name)
-//       formData.append('title', title)
-//       formData.append('turnip_price', turnip_price)
-//       formData.append('post_picture', post_picture)
-//       formData.append('description', description)
-
-//       console.log(...formData);
-
-//       const response = await axios.post('http://localhost:8000/api/posts/', formData, {
-//         headers: { 'Content-Type': 'multipart/form-data' }
-//       })
-
-//       console.log(response.data)
-
-//       navigate('/postings')
-//     } catch (error) {
-//       throw error
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <div>
-//         <form
-//           onSubmit={submit}
-//           className="flex flex-col p-6"
-//         >
-//           <p>Create a Posting</p>
-
-//           <p>Author: {props.username}</p>
-//           <p>Island Name: {props.island_name}</p>
-
-//           <input placeholder="Title" required
-//             onChange={e => setTitle(e.target.value)}
-//           />
-
-//           <input placeholder="Turnip Price" required
-//             onChange={e => setTurnipPrice(e.target.value)}
-//           />
-
-//           <p>Please provide a picture to confirm the price.</p>
-//           <input type="file" required accept="image/*"
-//             onChange={e => setPostPicture(e.target.files[0])}
-//           />
-
-//           <input placeholder="Description" required
-//             onChange={e => setDescription(e.target.value)}
-//           />
-
-//           <button type='submit'>Create Posting</button>
-//         </form>
-//       </div>
-//     </div>
-//   )
-// }

@@ -48,9 +48,10 @@ export const Postings = () => {
 
   return (
     <div className='font-motivasansmedium text-white'>
-      <Link to='create'>
+      {/* link does not respond to tailwind css */}
+      <Link to='create' style={{ display: 'inline-block', width: 'fit-content' }}>
         <div className="p-6">
-          <Icon icon="el:plus-sign" className="text-vividorange text-4xl"></Icon>
+          <Icon icon="el:plus-sign" className="text-vividorange text-4xl hover:bg-orangehover rounded-full bg-beige"></Icon>
         </div>
       </Link>
       <div className="flex flex-row text-lg px-6 justify-between">
@@ -74,8 +75,7 @@ export const Postings = () => {
           className="bg-skyblue p-10 m-6 rounded-3xl cursor-pointer text-lg"
         >
           <p>{post.date}</p>
-          <p>{post.island_name}</p>
-          <p>{post.title}</p>
+          <p className="font-bold">{post.title}</p>
           <p className="font-motivasansextrabold">Turnip Price: {post.turnip_price}</p>
           <img
             src={post.post_picture}
