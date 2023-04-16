@@ -6,6 +6,10 @@ export const CreatePosting = (props) => {
 
   console.log(props.user_id)
 
+  // console.log(props.email)
+
+  console.log(props.user)
+
   const [title, setTitle] = useState('')
   const [turnip_price, setTurnipPrice] = useState(0)
   const [post_picture, setPostPicture] = useState('')
@@ -25,7 +29,8 @@ export const CreatePosting = (props) => {
     e.preventDefault()
 
     const formData = new FormData()
-    formData.append('user', props.user_id)
+    formData.append('user', props.user)
+    formData.append('user_id', props.user_id)
     formData.append('island_name', props.island_name)
     formData.append('title', title)
     formData.append('turnip_price', turnip_price)
@@ -33,9 +38,7 @@ export const CreatePosting = (props) => {
     formData.append('post_picture', post_picture)
 
     try {
-      const response = await axios.post('http://localhost:8000/api/posts/', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      const response = await axios.post('http://localhost:8000/api/posts/', formData)
 
       console.log(response)
       navigate('/postings')

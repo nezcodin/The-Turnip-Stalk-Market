@@ -20,9 +20,11 @@ function App() {
   const [username, setUsername] = useState('')
   const [island_name, setIslandName] = useState('')
   const [user_id, setUserId] = useState()
-  const [user, setUser] = useState()
+  const [user, setUser] = useState({})
+  const [userEmail, setUserEmail] = useState()
 
   useEffect(() => {
+
     const getUser = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/users/${user_id}`, {
@@ -30,23 +32,26 @@ function App() {
           withCredentials: true,
         });
 
-        // setUsername(response.data.username)
-        // setIslandName(response.data.island_name)
-        // setUserId(response.data.id)
+        setUsername(response.data.username)
+        setIslandName(response.data.island_name)
+        setUserId(response.data.id)
+
+        setUserEmail(response.data.email)
 
         console.log(`User ID: ${user_id}`)
 
         setUser(response.data)
 
-        console.log(`User: ${user}`)
+        // console.log(user)
 
-        console.log(response.data)
+        // console.log(response.data)
+        // console.log(`Email: ${userEmail}`)
       } catch (error) {
         console.error(error);
       }
     }
     getUser();
-  }, [user, user_id]);
+  }, [user_id]);
 
   return (
     <div className="bg-beige font-finkheavy">
@@ -61,9 +66,9 @@ function App() {
         <Route path='/login' element={<Login setUsername={setUsername} setUserId={setUserId} />} />
 
         <Route path='/postings' element={<Postings />} />
-        <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} user={user} />} />
+        <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} email={userEmail} user={user} />} />
 
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile user_id={user_id} />} />
 
         <Route path='/calculator' element={<ProfitCalculator />} />
         <Route path='/calculator/desired-profit' element={<DesiredProfit />} />
