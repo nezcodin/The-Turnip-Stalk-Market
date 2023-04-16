@@ -32,7 +32,7 @@ export const Login = (props) => {
 
       const token = response.data.jwt
       const decodedToken = jwt_decode(token)
-      console.log(decodedToken)
+      // console.log(decodedToken)
       const username = decodedToken.username
       const user_id = decodedToken.id
 

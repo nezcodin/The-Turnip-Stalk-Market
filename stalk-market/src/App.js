@@ -25,28 +25,28 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/user/', {
+        const response = await axios.get(`http://localhost:8000/api/users/${user_id}`, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         });
 
-        setUsername(response.data.username)
-        setIslandName(response.data.island_name)
-        setUserId(response.data.id)
+        // setUsername(response.data.username)
+        // setIslandName(response.data.island_name)
+        // setUserId(response.data.id)
 
-        console.log(user_id)
+        console.log(`User ID: ${user_id}`)
 
         setUser(response.data)
 
-        console.log(user)
+        console.log(`User: ${user}`)
 
-        console.log(`Reponse: ${response.data}`)
+        console.log(response.data)
       } catch (error) {
         console.error(error);
       }
     }
     getUser();
-  }, []);
+  }, [user, user_id]);
 
   return (
     <div className="bg-beige font-finkheavy">
@@ -56,11 +56,15 @@ function App() {
       />
       <Routes>
         <Route path='/' element={<Home username={username} />} />
+
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login setUsername={setUsername} setUserId={setUserId} />} />
+
         <Route path='/postings' element={<Postings />} />
         <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} user={user} />} />
+
         <Route path='/profile' element={<Profile />} />
+
         <Route path='/calculator' element={<ProfitCalculator />} />
         <Route path='/calculator/desired-profit' element={<DesiredProfit />} />
         <Route path='/calculator/minimum-profit' element={<MinimumProfit />} />

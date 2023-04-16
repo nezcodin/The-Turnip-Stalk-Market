@@ -56,7 +56,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-user = get_user_model().objects.get(pk=1)
+# user = get_user_model().objects.get(pk=1)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')

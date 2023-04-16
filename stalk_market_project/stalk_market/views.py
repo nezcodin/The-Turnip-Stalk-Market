@@ -36,6 +36,16 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_object(self):
+        user_id = self.kwargs.get('user_id')
+        user = User.objects.get(id=user_id)
+        return user
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, context={'request': request})
+        return Response(serializer.data)
     
 
 class PostList(generics.ListCreateAPIView):

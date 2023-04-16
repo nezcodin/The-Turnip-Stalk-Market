@@ -14,9 +14,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
-    # class Meta:
-    #     model = User
-    #     fields = ('id', 'username', 'password', 'email', 'friend_code', 'island_name', 'profile_picture', 'bio', 'posts', 'comments')
 
     class Meta:
         model = User
@@ -25,11 +22,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
-
-    def __init__(self, *args, **kwargs):
-        context = kwargs.pop('context', {})
-        self.request = context.get('request')
-        super().__init__(*args, **kwargs)
 
     # this will "hush" the password and create the new user
     def create(self, validated_data):
@@ -46,10 +38,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
-    user = serializers.PrimaryKeyRelatedField(
-        queryset=get_user_model().objects.all(),
-        default=serializers.CurrentUserDefault()
-    )
+    user = UserSerializer(context={'request': None}) # Pass context to UserSerializer
     class Meta:
         model = Post
         fields = ('id', 'island_name', 'title', 'turnip_price', 'post_picture', 'description', 'date', 'time', 'comments', 'user', 'user_id')
