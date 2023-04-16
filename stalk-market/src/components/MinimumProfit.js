@@ -1,4 +1,4 @@
-export const IndivPost = () => {
+export const MinimumProfit = () => {
   return (
     <div>
 

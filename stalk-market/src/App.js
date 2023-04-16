@@ -11,6 +11,8 @@ import { CreatePosting } from './components/CreatePosting';
 import { Profile } from './components/Profile';
 import { ProfitCalculator } from './components/ProfitCalculator'
 import { useState, useEffect } from 'react';
+import { MinimumProfit } from './components/MinimumProfit';
+import { DesiredProfit } from './components/DesiredProfit';
 import axios from 'axios';
 
 function App() {
@@ -60,6 +62,8 @@ function App() {
         <Route path='/postings/create' element={<CreatePosting username={username} island_name={island_name} user_id={user_id} user={user} />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/calculator' element={<ProfitCalculator />} />
+        <Route path='/calculator/desired-profit' element={<DesiredProfit />} />
+        <Route path='/calculator/minimum-profit' element={<MinimumProfit />} />
       </Routes>
       <Footer />
     </div>
