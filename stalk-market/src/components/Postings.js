@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
+import UserSerializer from '../assets/serializers copy.py'
 
 export const Postings = () => {
 
@@ -13,9 +14,9 @@ export const Postings = () => {
       const response = await axios.get('http://localhost:8000/api/posts/');
       // this will let me get the user and picture since it is returned as a link
       const posts = await Promise.all(response.data.map(async post => {
-        const userResponse = await axios.get(post.user)
+        // const userResponse = await axios.get(`http://localhost:8000/api/users/${post.user_id}/`)
         const pictureResponse = await axios.get(post.post_picture)
-        return { ...post, user: userResponse.data, picture: pictureResponse.data }
+        return { ...post, picture: pictureResponse.data }
       }))
       console.log(response.data);
       setPostings(posts)
