@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
-import UserSerializer from '../assets/serializers copy.py'
 
 export const Postings = () => {
 
