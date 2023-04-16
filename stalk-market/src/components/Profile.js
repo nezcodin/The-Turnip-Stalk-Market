@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Profile = () => {
 
@@ -23,8 +24,11 @@ export const Profile = () => {
   }, []);
 
   return (
-    <div>
-      <p>{user}</p>
+    <div className="flex items-center justify-center text-sienna text-4xl p-60 flex-col">
+      <p>This page is coming soon!</p>
+      <Link to='/'>
+        <button className="m-6 bg-vividorange text-white p-3 rounded-lg text-xl w-40 hover:bg-orangehover">Return Home</button>
+      </Link>
     </div>
   )
 }
