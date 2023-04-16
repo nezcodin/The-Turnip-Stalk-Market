@@ -45,12 +45,12 @@ export const CreatePosting = (props) => {
   }
 
   return (
-    <div>
-      <div className="p-6 text-lg font-motivasansmedium text-sienna flex flex-col justify-center items-center">
+    <div className="flex justify-center items-center py-10">
+      <div className="p-6 text-lg font-motivasansmedium flex flex-col justify-center items-center bg-skyblue rounded-xl w-fit px-24">
         <div className="flex flex-col items-center p-6">
-          <p className="text-4xl font-finkheavy p-4">Create a Posting</p>
-          <p className="p-2">Author: {props.username}</p>
-          <p className="p-2">Island Name: {props.island_name}</p>
+          <p className="text-4xl font-finkheavy p-4 text-white">Create a Posting</p>
+          <p className="p-2 text-white">Author: {props.username}</p>
+          <p className="p-2 text-white">Island Name: {props.island_name}</p>
         </div>
         <form
           onSubmit={submit}
@@ -66,9 +66,9 @@ export const CreatePosting = (props) => {
             className="text-left m-4 rounded-lg p-1 w-36 pl-5"
           />
 
-          <p className="text-center">Please provide a picture to confirm the price.</p>
+          <p className="text-center text-white p-1">Please provide a picture to confirm the price.</p>
           {fileName ?
-            <p className="text-center">File submitted: {fileName}</p> :
+            <p className="text-center text-white">File submitted: {fileName}</p> :
             null
           }
           <div className="flex items-center justify-center">

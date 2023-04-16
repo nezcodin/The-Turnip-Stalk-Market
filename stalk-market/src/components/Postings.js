@@ -82,6 +82,7 @@ export const Postings = () => {
             alt="user post"
             className="flex rounded-xl h-24 w-24"
           />
+          <button className=" bg-vividorange text-white p-3 rounded-lg text-md w-32 hover:bg-orangehover">View Post</button>
         </div>
       ))}
     </div>
