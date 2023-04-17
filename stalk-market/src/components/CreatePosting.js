@@ -29,7 +29,7 @@ export const CreatePosting = (props) => {
     e.preventDefault()
 
     const formData = new FormData()
-    formData.append('user', props.user_id)
+    formData.append('user', props.user)
     formData.append('user_id', props.user_id)
     formData.append('island_name', props.island_name)
     formData.append('title', title)

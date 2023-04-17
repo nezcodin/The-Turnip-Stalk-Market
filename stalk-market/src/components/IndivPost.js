@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export const IndivPost = () => {
+export const IndivPost = (props) => {
   const [post, setPost] = useState(null);
   const [commentsData, setCommentsData] = useState([]);
   const { id } = useParams(); //this is grabbing the post id from the url
+
+  const navigate = useNavigate()
 
   const viewPost = async () => {
     try {
@@ -37,7 +40,19 @@ export const IndivPost = () => {
     }
   };
 
+  const handleEditPost = () => {
+    navigate(`/postings/${id}/edit`)
+  };
 
+  const handleDeletePost = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:8000/api/posts/${id}/`)
+      console.log('Successfully deleted!')
+      navigate('/postings')
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   useEffect(() => {
     viewPost();
@@ -61,6 +76,12 @@ export const IndivPost = () => {
               <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover">Join Wait Queue</button>
               <p className="font-motivasansbold">Turnip Price: {post.turnip_price}</p>
             </div>
+            {post.user.id === props.user_id && (
+              <div className="flex justify-between mt-6">
+                <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover" onClick={handleEditPost}>Edit</button>
+                <button className="bg-red-600 text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-red-700" onClick={handleDeletePost}>Delete</button>
+              </div>
+            )}
           </div>
           <div className="bg-skyblue mx-40 -my-10 p-6 rounded-lg flex justify-between mb-10">
             <input placeholder="Join the conversation..." className="rounded-lg pl-3 w-full" />
