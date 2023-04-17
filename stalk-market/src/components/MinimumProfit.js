@@ -17,7 +17,7 @@ export const MinimumProfit = () => {
   };
 
   return (
-    <div className="flex font-motivasansmedium items-center justify-center flex-col p-24 text-xl">
+    <div className="flex font-motivasansmedium items-center justify-center flex-col p-24 text-xl text-sienna">
       <p className="p-6">
         I bought
         <input

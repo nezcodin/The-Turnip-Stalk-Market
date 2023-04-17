@@ -18,7 +18,7 @@ export const DesiredProfit = () => {
   };
 
   return (
-    <div className="flex font-motivasansmedium items-center justify-center flex-col p-14 text-xl">
+    <div className="flex font-motivasansmedium items-center justify-center flex-col p-14 text-xl text-sienna">
       <p className="p-6">
         I bought
         <input
