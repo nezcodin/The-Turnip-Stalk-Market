@@ -79,7 +79,7 @@ export const IndivPost = () => {
           <div className="bg-skyblue m-24 mx-40 py-4 px-10 rounded-lg flex flex-col text-white text-xl">
 
             {comments.map((comment, index) => (
-              <div key={index} className="m-4">
+              <div key={index} className={`m-4 ${comment.parent_comment ? 'ml-24 nested-comment' : ''}`}>
                 <div className="flex justify-between my-2">
                   <p>{commentsUser[index]}</p>
                   <p>{new Date(commentsDate[index]).toLocaleDateString()} | {commentsTime[index]}</p>
@@ -91,6 +91,7 @@ export const IndivPost = () => {
                 <hr className="border-2 border-white" />
               </div>
             ))}
+
           </div>
         </div>
       )}
