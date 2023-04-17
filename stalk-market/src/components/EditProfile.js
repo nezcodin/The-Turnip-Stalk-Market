@@ -40,6 +40,17 @@ export const EditProfile = (props) => {
     }));
   };
 
+  const handleDeleteUser = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:8000/api/users/${props.user.id}/`)
+      console.log('Successfully deleted!')
+      props.setUsername('')
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <div className='flex items-center justify-center pt-10 pb-5 text-xl font-motivasansmedium'>
       <form onSubmit={handleSubmit} className='flex flex-col p-10 justify-center items-center bg-skyblue rounded-lg w-fit'>
@@ -82,7 +93,10 @@ export const EditProfile = (props) => {
             className='m-2 rounded-lg pl-3 pt-1 text-black h-24 mb-0'
           />
         </label>
-        <button type="submit" className='m-6 bg-vividorange text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-orangehover'>Save Changes</button>
+        <div className='flex justify-between'>
+          <button type="submit" className='m-6 bg-vividorange text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-orangehover'>Save Changes</button>
+          <button className="m-6 bg-red-500 text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-red-600" onClick={handleDeleteUser}>Delete Account</button>
+        </div>
       </form>
     </div>
   );

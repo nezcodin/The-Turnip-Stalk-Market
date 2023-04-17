@@ -74,7 +74,7 @@ function App() {
         <Route path='/postings/:id/edit' element={<EditPost />} />
 
         <Route path='/profile' element={<Profile user_id={user_id} />} />
-        <Route path='/profile/edit' element={<EditProfile user_id={user_id} user={user} />} />
+        <Route path='/profile/edit' element={<EditProfile user_id={user_id} user={user} setUsername={setUsername} />} />
 
         <Route path='/calculator' element={<ProfitCalculator />} />
         <Route path='/calculator/desired-profit' element={<DesiredProfit />} />
