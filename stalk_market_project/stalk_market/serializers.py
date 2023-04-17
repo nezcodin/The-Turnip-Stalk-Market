@@ -43,23 +43,6 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         model = Post
         fields = ('id', 'island_name', 'title', 'turnip_price', 'post_picture', 'description', 'date', 'time', 'comments', 'user', 'user_id')
 
-    def post(self, request):
-        user = request.user  # get the user object from the request
-        post_data = request.data
-        post_data['user_id'] = user.id  # set the user_id field to the id of the user object
-        serializer = PostSerializer(data=post_data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-    def __init__(self, *args, **kwargs):
-        context = kwargs.pop('context', {})
-        self.request = context.get('request')
-        super().__init__(*args, **kwargs)
-
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(
         view_name='user_detail',

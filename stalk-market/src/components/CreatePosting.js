@@ -29,7 +29,7 @@ export const CreatePosting = (props) => {
     e.preventDefault()
 
     const formData = new FormData()
-    formData.append('user', props.user)
+    formData.append('user', props.user_id)
     formData.append('user_id', props.user_id)
     formData.append('island_name', props.island_name)
     formData.append('title', title)
@@ -38,12 +38,18 @@ export const CreatePosting = (props) => {
     formData.append('post_picture', post_picture)
 
     try {
-      const response = await axios.post('http://localhost:8000/api/posts/', formData)
+      const response = await axios.post('http://localhost:8000/api/posts/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true
+      })
 
       console.log(response)
       navigate('/postings')
     } catch (error) {
-      throw error
+      console.log(error)
+      console.log(error.request)
+      console.log(error.response.data)
+      console.log(error.response.status)
     }
   }
 

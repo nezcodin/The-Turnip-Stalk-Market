@@ -70,24 +70,26 @@ export const Postings = () => {
         </div>
       </div>
       {postings.map(post => (
-        <div
-          key={post.id}
-          className="bg-skyblue p-8 m-8 my-12 rounded-3xl cursor-pointer text-lg flex flex-row justify-between"
-        >
-          <div className="flex flex-row-reverse ">
-            <p className="font-motivasansextrabold mx-6 text-xl">{post.title}</p>
-            <img
-              src={post.post_picture}
-              alt="user post"
-              className="flex rounded-xl h-32 w-44"
-            />
-          </div>
-          <div className="flex flex-col justify-between text-right">
-            <p>{post.date}</p>
-            <p className="font-motivasansextrabold">Turnip Price: {post.turnip_price}</p>
-          </div>
+        <Link to={`${post.id}`}>
+          <div
+            key={post.id}
+            className="bg-skyblue p-8 m-8 my-12 rounded-3xl cursor-pointer text-lg flex flex-row justify-between"
+          >
+            <div className="flex flex-row-reverse ">
+              <p className="font-motivasansextrabold mx-6 text-xl">{post.title}</p>
+              <img
+                src={post.post_picture}
+                alt="user post"
+                className="flex rounded-xl h-32 w-44"
+              />
+            </div>
+            <div className="flex flex-col justify-between text-right">
+              <p>{post.date}</p>
+              <p className="font-motivasansextrabold">Turnip Price: {post.turnip_price}</p>
+            </div>
 
-        </div>
+          </div>
+        </Link>
       ))}
     </div>
   )

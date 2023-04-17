@@ -56,6 +56,27 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+    # def get_object(self):
+    #     post_id = self.kwargs.get('post_id')
+    #     post = Post.objects.get(id=post_id)
+    #     return post
+
+    # def get(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     serializer = self.get_serializer(instance, context={'request': request})
+    #     return Response(serializer.data)
+    
+    # def post(self, request):
+    #     user = request.user  # get the user object from the request
+    #     post_data = request.data
+    #     post_data['user_id'] = user.id  # set the user_id field to the id of the user object
+    #     serializer = PostSerializer(data=post_data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     else:
+    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
