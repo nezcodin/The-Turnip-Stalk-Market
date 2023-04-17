@@ -57,6 +57,24 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+import json
+
+@login_required
+def update_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    user_data = json.loads(request.body.decode('utf-8'))['user']
+    user = User.objects.get(pk=user_data['id'])
+    post.user = user
+    # ... update other fields and save post ...
+    print(request.data)  # add this line to print request data
+
+
+
+    
+
     # def get_object(self):
     #     post_id = self.kwargs.get('post_id')
     #     post = Post.objects.get(id=post_id)
