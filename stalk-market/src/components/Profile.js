@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = (props) => {
@@ -31,9 +30,24 @@ export const Profile = (props) => {
   }
 
   return (
-    <div className="flex items-center justify-center text-sienna text-4xl p-60 flex-col">
-      {user && <p>{user.username}</p>}
-      <button onClick={handleEdit}>Edit</button>
+    <div className="flex items-center text-sienna text-2xl p-24 flex-col font-motivasansmedium justify-between">
+      {user &&
+        <div className="flex p-10 w-full justify-center">
+          <div className="m-4 flex flex-col">
+            <img src={user.profile_picture} alt="profile" className="rounded-full" />
+            <button className='m-6 bg-vividorange text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-orangehover'>Change</button>
+          </div>
+          <div>
+            <div className="flex m-4">
+              <p className="mr-24">{user.username}</p>
+              <p className="flex ml-96">Island Name: {user.island_name}</p>
+            </div>
+            <p className="flex flex-row m-4">Friend Code: {user.friend_code !== null ? <p>{user.friend_code}</p> : <p>Unavailable</p>}</p>
+            <p className="m-4">Bio: {user.bio}</p>
+          </div>
+        </div>
+      }
+      <button onClick={handleEdit} className='m-6 bg-vividorange text-white p-3 rounded-lg font-finkheavy text-2xl hover:bg-orangehover'>Edit</button>
     </div>
   )
 }
