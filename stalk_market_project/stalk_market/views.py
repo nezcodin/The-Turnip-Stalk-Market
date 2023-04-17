@@ -11,21 +11,13 @@ from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import View
-from django.http import HttpResponse, Http404, HttpRequest
+from django.http import HttpResponse, Http404
 from django.conf import settings
 import os
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from .forms import PostForm
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from rest_framework.generics import CreateAPIView
-from django.shortcuts import get_object_or_404
-
-
+from django.contrib.auth.decorators import login_required
+import json
 
 # Create your views here.
 
@@ -36,7 +28,7 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    lookup_field = 'id'  # or lookup_field = 'id'
+    lookup_field = 'id'
 
     def get_object(self):
         user_id = self.kwargs.get('user_id')
@@ -57,44 +49,15 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-import json
 
-@login_required
-def update_post(request, pk):
-    post = Post.objects.get(pk=pk)
-    user_data = json.loads(request.body.decode('utf-8'))['user']
-    user = User.objects.get(pk=user_data['id'])
-    post.user = user
-    # ... update other fields and save post ...
-    print(request.data)  # add this line to print request data
-
-
-
-    
-
-    # def get_object(self):
-    #     post_id = self.kwargs.get('post_id')
-    #     post = Post.objects.get(id=post_id)
-    #     return post
-
-    # def get(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     serializer = self.get_serializer(instance, context={'request': request})
-    #     return Response(serializer.data)
-    
-    # def post(self, request):
-    #     user = request.user  # get the user object from the request
-    #     post_data = request.data
-    #     post_data['user_id'] = user.id  # set the user_id field to the id of the user object
-    #     serializer = PostSerializer(data=post_data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     else:
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# @login_required
+# def update_post(request, pk):
+#     post = Post.objects.get(pk=pk)
+#     user_data = json.loads(request.body.decode('utf-8'))['user']
+#     user = User.objects.get(pk=user_data['id'])
+#     post.user = user
+#     # ... update other fields and save post ...
+#     print(request.data)  
 
 class PostComments(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
@@ -201,28 +164,4 @@ class GetImageView(View):
             return HttpResponse(image_data, content_type='image/png')
         else:
             raise Http404("Image not found")
-
-# class PostCreateView(CreateView):
-#     model = Post
-#     form_class = PostForm
-#     template_name = 'post_form.html'
-#     success_url = reverse_lazy('posts')
-
-#     def form_valid(self, form):
-#         print(self.request.user)
-#         form.instance.user = self.request.user
-#         form.instance.island_name = self.request.user.island_name 
-#         return super().form_valid(form)
-
-#     def form_invalid(self, form):
-#         messages.error(self.request, 'Error: Please check your input.')
-#         return super().form_invalid(form)
-
-# class PostCreateAPIView(CreateAPIView):
-#     serializer_class = PostSerializer
-
-#     def perform_create(self, serializer):
-#         # Set the user ID on the Post object
-#         serializer.validated_data['user_id'] = self.request.data['user_id']
-#         serializer.save()
-
+        

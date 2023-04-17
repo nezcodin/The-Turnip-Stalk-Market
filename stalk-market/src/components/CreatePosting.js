@@ -6,8 +6,6 @@ export const CreatePosting = (props) => {
 
   console.log(props.user_id)
 
-  // console.log(props.email)
-
   console.log(props.user)
 
   const [title, setTitle] = useState('')

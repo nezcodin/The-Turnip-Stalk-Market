@@ -45,10 +45,6 @@ function App() {
 
         setUser(response.data)
 
-        // console.log(user)
-
-        // console.log(response.data)
-        // console.log(`Email: ${userEmail}`)
       } catch (error) {
         console.error(error);
       }
