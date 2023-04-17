@@ -72,21 +72,21 @@ export const IndivPost = () => {
               <p>Turnip Price: {post.turnip_price}</p>
             </div>
           </div>
-          <div className="bg-sienna mx-40 -my-10 p-4 rounded-lg">
-            <input placeholder="Join the conversation..." />
-            <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover">Post</button>
+          <div className="bg-skyblue mx-40 -my-10 p-6 rounded-lg flex justify-between">
+            <input placeholder="Join the conversation..." className="rounded-lg pl-3 w-full" />
+            <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover w-16 ml-6">Post</button>
           </div>
           <div className="bg-skyblue m-24 mx-40 py-4 px-10 rounded-lg flex flex-col text-white text-xl">
 
             {comments.map((comment, index) => (
               <div key={index} className="m-4">
-                <div className="flex justify-between">
+                <div className="flex justify-between my-2">
                   <p>{commentsUser[index]}</p>
                   <p>{new Date(commentsDate[index]).toLocaleDateString()} | {commentsTime[index]}</p>
                 </div>
                 <p>{comment.text_body}</p>
                 <div className="flex justify-end">
-                  <button className="bg-vividorange text-white p-2 rounded-lg font-finkheavy text-lg hover:bg-orangehover my-3">Reply</button>
+                  <button className="bg-vividorange text-white p-2 rounded-lg font-finkheavy text-lg hover:bg-orangehover my-4">Reply</button>
                 </div>
                 <hr className="border-2 border-white" />
               </div>
