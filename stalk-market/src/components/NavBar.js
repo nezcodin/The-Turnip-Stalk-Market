@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ac_logo from '../assets/ac_logo.png'
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
 
 export const NavBar = (props) => {
+
+  const navigate = useNavigate()
 
   const logout = async (e) => {
     e.preventDefault();
@@ -17,6 +20,7 @@ export const NavBar = (props) => {
         },
       );
       props.setUsername('')
+      navigate('/')
     } catch (error) {
       console.error(error);
     }
