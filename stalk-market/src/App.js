@@ -14,6 +14,7 @@ import { IndivPost } from './components/IndivPost';
 import { MinimumProfit } from './components/MinimumProfit';
 import { DesiredProfit } from './components/DesiredProfit';
 import { EditPost } from './components/EditPost';
+import { EditProfile } from './components/EditProfile';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -73,6 +74,7 @@ function App() {
         <Route path='/postings/:id/edit' element={<EditPost />} />
 
         <Route path='/profile' element={<Profile user_id={user_id} />} />
+        <Route path='/profile/edit' element={<EditProfile user_id={user_id} user={user} />} />
 
         <Route path='/calculator' element={<ProfitCalculator />} />
         <Route path='/calculator/desired-profit' element={<DesiredProfit />} />
