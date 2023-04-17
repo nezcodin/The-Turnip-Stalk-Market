@@ -17,7 +17,7 @@ export const Postings = () => {
         const pictureResponse = await axios.get(post.post_picture)
         return { ...post, picture: pictureResponse.data }
       }))
-      console.log(response.data);
+      // console.log(response.data);
       setPostings(posts)
     } catch (error) {
       console.log(error);

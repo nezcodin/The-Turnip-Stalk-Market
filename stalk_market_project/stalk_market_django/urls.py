@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/', include('stalk_market.urls')),
     path('media/', PostPicsView.as_view()),
     path('media/<str:image_name>/', GetImageView.as_view(), name='get_image'),
+    path('media/assets/<str:image_name>/', GetImageView.as_view(), name='default_profile'),
 ]

@@ -32,10 +32,10 @@ class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'id'  # or lookup_field = 'id'
 
     def get_object(self):
         user_id = self.kwargs.get('user_id')

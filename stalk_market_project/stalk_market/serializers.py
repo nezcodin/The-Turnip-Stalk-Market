@@ -44,14 +44,17 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'island_name', 'title', 'turnip_price', 'post_picture', 'description', 'date', 'time', 'comments', 'user', 'user_id')
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.HyperlinkedRelatedField(
-        view_name='user_detail',
-        read_only=True
-    )
-    post = serializers.HyperlinkedRelatedField(
-        view_name='post_detail',
-        read_only=True
-    )
+    # user = serializers.HyperlinkedRelatedField(
+    #     view_name='user_detail',
+    #     read_only=True
+    # )
+    # post = serializers.HyperlinkedRelatedField(
+    #     view_name='post_detail',
+    #     read_only=True
+    # )
+    user = UserSerializer()
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+
     parent_comment = serializers.HyperlinkedRelatedField(
         view_name='comment_detail',
         lookup_field='pk',
@@ -59,5 +62,5 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Comment
-        fields = ('id', 'post_id', 'text_body', 'date', 'time', 'parent_comment', 'user', 'post')
+        fields = ('id', 'post_id', 'text_body', 'date', 'time', 'parent_comment', 'user', 'post', 'user_id')
 
