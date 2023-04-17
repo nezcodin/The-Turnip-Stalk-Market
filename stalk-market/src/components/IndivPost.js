@@ -4,10 +4,7 @@ import { useParams } from "react-router-dom";
 
 export const IndivPost = () => {
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [commentsUser, setCommentsUser] = useState([]);
-  const [commentsDate, setCommentsDate] = useState([]);
-  const [commentsTime, setCommentsTime] = useState([]);
+  const [commentsData, setCommentsData] = useState([]);
   const { id } = useParams(); //this is grabbing the post id from the url
 
   const viewPost = async () => {
@@ -24,11 +21,7 @@ export const IndivPost = () => {
 
   const viewComments = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/comments/', {
-        params: {
-          post: id
-        }
-      });
+      const response = await axios.get(`http://localhost:8000/api/posts/${id}/comments`);
       const formattedComments = response.data.map((comment) => {
         const date = new Date(comment.date);
         const formattedTime = new Date(`1970-01-01T${comment.time}Z`).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -38,22 +31,19 @@ export const IndivPost = () => {
           time: formattedTime,
         };
       });
-      const commentsUser = formattedComments.map(comment => comment.user.username);
-      const commentsDate = formattedComments.map(comment => comment.date);
-      const commentsTime = formattedComments.map(comment => comment.time);
-      setComments(formattedComments);
-      setCommentsUser(commentsUser);
-      setCommentsDate(commentsDate);
-      setCommentsTime(commentsTime);
+      setCommentsData(formattedComments);
     } catch (error) {
       console.log(error);
     }
   };
 
+
+
   useEffect(() => {
     viewPost();
     viewComments();
   }, []);
+
 
   return (
     <div className="font-motivasansmedium">
@@ -69,30 +59,32 @@ export const IndivPost = () => {
             <p className="py-4">{post.description}</p>
             <div className="flex justify-between my-6">
               <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover">Join Wait Queue</button>
-              <p>Turnip Price: {post.turnip_price}</p>
+              <p className="font-motivasansbold">Turnip Price: {post.turnip_price}</p>
             </div>
           </div>
-          <div className="bg-skyblue mx-40 -my-10 p-6 rounded-lg flex justify-between">
+          <div className="bg-skyblue mx-40 -my-10 p-6 rounded-lg flex justify-between mb-10">
             <input placeholder="Join the conversation..." className="rounded-lg pl-3 w-full" />
             <button className="bg-vividorange text-white p-3 rounded-lg font-finkheavy text-lg hover:bg-orangehover w-16 ml-6">Post</button>
           </div>
-          <div className="bg-skyblue m-24 mx-40 py-4 px-10 rounded-lg flex flex-col text-white text-xl">
-
-            {comments.map((comment, index) => (
-              <div key={index} className={`m-4 ${comment.parent_comment ? 'ml-24 nested-comment' : ''}`}>
-                <div className="flex justify-between my-2">
-                  <p>{commentsUser[index]}</p>
-                  <p>{new Date(commentsDate[index]).toLocaleDateString()} | {commentsTime[index]}</p>
-                </div>
-                <p>{comment.text_body}</p>
-                <div className="flex justify-end">
-                  <button className="bg-vividorange text-white p-2 rounded-lg font-finkheavy text-lg hover:bg-orangehover my-4">Reply</button>
-                </div>
-                <hr className="border-2 border-white" />
-              </div>
-            ))}
-
-          </div>
+          {commentsData.length !== 0 ? (
+            <div className="bg-skyblue mt-5 m-24 mx-40 py-4 px-10 rounded-lg flex flex-col text-white text-xl">
+              {commentsData
+                .filter((comment) => comment.post_id === parseInt(id))
+                .map((comment, index) => (
+                  <div key={index} className={`m-4 ${comment.parent_comment ? 'ml-24 nested-comment' : ''}`}>
+                    <div className="flex justify-between my-2">
+                      <p>{comment.user.username}</p>
+                      <p>{new Date(comment.date).toLocaleDateString()} | {comment.time}</p>
+                    </div>
+                    <p>{comment.text_body}</p>
+                    <div className="flex justify-end">
+                      <button className="bg-vividorange text-white p-2 rounded-lg font-finkheavy text-lg hover:bg-orangehover my-4">Reply</button>
+                    </div>
+                    <hr className="border-2 border-white" />
+                  </div>
+                ))}
+            </div>
+          ) : null}
         </div>
       )}
     </div>

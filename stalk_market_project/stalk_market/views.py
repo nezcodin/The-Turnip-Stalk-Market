@@ -23,6 +23,7 @@ from .forms import PostForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from rest_framework.generics import CreateAPIView
+from django.shortcuts import get_object_or_404
 
 
 
@@ -76,6 +77,18 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     else:
     #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PostComments(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+    
+    def get_queryset(self):
+        post_id = self.kwargs['pk']
+        return Comment.objects.filter(post_id=post_id)
+    
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
